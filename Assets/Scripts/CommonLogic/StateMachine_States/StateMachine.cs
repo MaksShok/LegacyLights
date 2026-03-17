@@ -11,20 +11,16 @@ namespace CommonLogic.StateMachine_States
     
         private IState _currentState;
         private List<StateTransition> _currentTransitions = new ();
+        private List<StateTransition> _anyTransitions = new();
         private Dictionary<Type, List<StateTransition>> _transitionMap = new ();
 
         public void Update()
         {
             if (_currentState == null || _currentState.CanExit)
             {
-                foreach (var transition in _currentTransitions)
+                if (TryGetTransition(out var transition))
                 {
-                    if (transition.CheckCanGo())
-                    {
-                        IState toState = transition.To;
-                        SetState(toState);
-                        break;
-                    }
+                    SetState(transition.ToState);
                 }
             }
         
@@ -59,17 +55,47 @@ namespace CommonLogic.StateMachine_States
         
             transitions.Add(new StateTransition(toState, predicate));
         }
+
+        public void AddAnyTransition(IState toState, Func<bool> predicate)
+        {
+            _anyTransitions.Add(new StateTransition(toState, predicate));
+        }
+
+        private bool TryGetTransition(out StateTransition transition)
+        {
+            transition = null;
+            
+            foreach (var st in _anyTransitions)
+            {
+                if (st.CheckCanGo())
+                {
+                    transition = st;
+                    return true;
+                }
+            }
+                
+            foreach (var st in _currentTransitions)
+            {
+                if (st.CheckCanGo())
+                {
+                    transition = st;
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 
     public class StateTransition
     {
-        public IState To { get; }
+        public IState ToState { get; }
         
         private readonly Func<bool> _condition;
 
         public StateTransition(IState to, Func<bool> condition)
         {
-            To = to;
+            ToState = to;
             _condition = condition;
         }
 
