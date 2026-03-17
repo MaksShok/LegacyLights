@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _main.ServiceLocator
+namespace _main.ServiceLoc
 {
     public class ServiceLocator
     {
