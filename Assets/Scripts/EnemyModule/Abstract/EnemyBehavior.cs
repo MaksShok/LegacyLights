@@ -12,15 +12,17 @@ namespace EnemyModule.Abstract
         [SerializeField] protected CollisionHealthProvider _collisionHealthProvider;
         [SerializeField] protected Rigidbody2D _rb;
         [SerializeField] private EnemyConfig _config;
-        
+
         public ISpendHealth SpendHealth => _healthModel;
 
         protected HealthModel _healthModel;
         protected StateMachine _stateMachine;
-        
+
         protected Transform _targetTransform;
         protected ISpendHealth _targetHealth;
-        
+
+        private EnemyModule.EnemyHealthReceiver _healthReceiver;
+
         public void Initialize(Transform target, ISpendHealth targetHealth)
         {
             _targetTransform = target;
@@ -28,6 +30,13 @@ namespace EnemyModule.Abstract
 
             _healthModel = new HealthModel(_config.Health);
             _collisionHealthProvider.Initialize(_healthModel);
+
+            _healthReceiver = GetComponent<EnemyModule.EnemyHealthReceiver>();
+            if (_healthReceiver == null)
+            {
+                _healthReceiver = gameObject.AddComponent<EnemyModule.EnemyHealthReceiver>();
+            }
+            _healthReceiver.Initialize(_healthModel);
 
             _stateMachine = new StateMachine();
 
