@@ -4,13 +4,14 @@ using UnityEngine;
 namespace EnemyModule
 {
     /// <summary>
-    /// Спавнер врагов. Автоматически инициализирует врага при создании.
+    /// Спавнер врагов ближнего боя (Meshik).
+    /// Автоматически инициализирует врага при создании.
     /// </summary>
     public class EnemySpawner : MonoBehaviour
     {
         [Header("Настройки спавна")]
         [SerializeField] private EnemyBehavior _enemyPrefab;
-        [SerializeField] private Transform _spawnPoint;
+        [SerializeField] private Transform _spawnPoint1;
         [SerializeField] private Transform _spawnPoint2;
 
         private Transform _playerTransform;
@@ -28,7 +29,7 @@ namespace EnemyModule
                 Debug.LogWarning("[EnemySpawner] Игрок не найден! Враги не смогут атаковать.");
             }
 
-            // Спавним двух врагов если префаб задан
+            // Спавним врагов если префаб задан
             if (_enemyPrefab != null)
             {
                 SpawnEnemies();
@@ -36,7 +37,7 @@ namespace EnemyModule
         }
 
         /// <summary>
-        /// Создать двух врагов в точках спавна
+        /// Создать врагов ближнего боя в точках спавна
         /// </summary>
         public void SpawnEnemies()
         {
@@ -47,16 +48,24 @@ namespace EnemyModule
             }
 
             // Спавн первого врага
-            Vector3 spawnPosition1 = _spawnPoint != null ? _spawnPoint.position : transform.position;
-            EnemyBehavior enemy1 = Instantiate(_enemyPrefab, spawnPosition1, Quaternion.identity);
-            enemy1.Initialize(_playerTransform, null);
-            Debug.Log($"[EnemySpawner] Враг 1 создан в {spawnPosition1}");
+            if (_spawnPoint1 != null)
+            {
+                SpawnEnemyAt(_spawnPoint1.position, "Meshik 1");
+            }
 
             // Спавн второго врага
-            Vector3 spawnPosition2 = _spawnPoint2 != null ? _spawnPoint2.position : transform.position + Vector3.right * 2f;
-            EnemyBehavior enemy2 = Instantiate(_enemyPrefab, spawnPosition2, Quaternion.identity);
-            enemy2.Initialize(_playerTransform, null);
-            Debug.Log($"[EnemySpawner] Враг 2 создан в {spawnPosition2}");
+            if (_spawnPoint2 != null)
+            {
+                SpawnEnemyAt(_spawnPoint2.position, "Meshik 2");
+            }
+        }
+
+        private EnemyBehavior SpawnEnemyAt(Vector3 position, string name)
+        {
+            EnemyBehavior enemy = Instantiate(_enemyPrefab, position, Quaternion.identity);
+            enemy.Initialize(_playerTransform, null);
+            Debug.Log($"[EnemySpawner] {name} создан в {position}");
+            return enemy;
         }
 
         private void OnDrawGizmos()
@@ -64,10 +73,10 @@ namespace EnemyModule
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, 0.5f);
 
-            if (_spawnPoint != null)
+            if (_spawnPoint1 != null)
             {
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(_spawnPoint.position, 0.3f);
+                Gizmos.DrawWireSphere(_spawnPoint1.position, 0.3f);
             }
 
             if (_spawnPoint2 != null)
