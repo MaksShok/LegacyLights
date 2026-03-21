@@ -1,7 +1,6 @@
-﻿using ModestTree.Util;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace _Project.Scripts.InteractableEnvironmentModule.InteractableActions
+namespace InteractableEnvironmentModule.InteractableActions
 {
     public abstract class BaseInteractableAction : MonoBehaviour
     {

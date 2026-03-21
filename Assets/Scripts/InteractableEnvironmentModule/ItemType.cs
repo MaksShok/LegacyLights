@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Project.Scripts.InteractableEnvironmentModule
+namespace InteractableEnvironmentModule
 {
     [CreateAssetMenu(fileName = "ItemType", menuName = "ScriptableObjects/Items/ItemType")]
     public class ItemType : ScriptableObject

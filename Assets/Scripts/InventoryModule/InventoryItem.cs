@@ -1,7 +1,7 @@
-﻿using _Project.Scripts.InteractableEnvironmentModule;
+﻿using InteractableEnvironmentModule;
 using UnityEngine;
 
-namespace _Project.Scripts.InventoryModule
+namespace InventoryModule
 {
     [CreateAssetMenu(fileName = "InventoryItem", menuName = "ScriptableObjects/Items/InventoryItem")]
     public class InventoryItem : ItemType

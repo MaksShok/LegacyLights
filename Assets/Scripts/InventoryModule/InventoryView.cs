@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Scripts.InventoryModule
+namespace InventoryModule
 {
     public class InventoryView : MonoBehaviour
     {

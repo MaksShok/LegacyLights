@@ -1,12 +1,10 @@
-﻿using _Project.Scripts.InventoryModule;
+﻿using InventoryModule;
 using UnityEngine;
-using Zenject;
 
-namespace _Project.Scripts.InteractableEnvironmentModule.InteractableActions
+namespace InteractableEnvironmentModule.InteractableActions
 {
     public class TakeInventoryItemAction : BaseInteractableAction
     {
-        [Inject] 
         private InventoryModel _inventoryModel;
 
         public InventoryItem Item { get; private set; }
