@@ -17,8 +17,7 @@ namespace EnemyModule
         {
             _playerSpendHealth = ServiceLocator.Current.Get<ISpendHealth>();
             
-            // Сделать через ServiceLocator
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            var player = ServiceLocator.Current.Get<Player.Player>();
             _playerTransform = player.transform;
             
             SpawnEnemy();

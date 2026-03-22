@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using _main.ServiceLoc;
 using Player;
@@ -49,6 +48,7 @@ public class WeaponController : MonoBehaviour
     {
         if (Time.time > _lastAttackTime + attackCooldown && !_isAttacking)
         {
+            Debug.Log("Attack");
             StartCoroutine(PerformAttack());
         }
     }

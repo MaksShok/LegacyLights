@@ -25,7 +25,7 @@ namespace Player
 
         public bool CheckAttackInput()
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 return true;
             }

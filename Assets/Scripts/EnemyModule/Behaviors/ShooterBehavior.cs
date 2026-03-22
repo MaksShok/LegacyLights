@@ -32,16 +32,7 @@ namespace EnemyModule.Behaviors
             {
                 _healthModel.OnDie += Die;
             }
-        }
-
-        private void Die()
-        {
-            Debug.Log($"[ShooterBehavior] {gameObject.name} умер");
-            Destroy(gameObject);
-        }
-
-        protected override void SetupStates()
-        {
+            
             Debug.Log($"[ShooterBehavior] {gameObject.name} настройка состояний. AttackRange={_shooterConfig.AttackRange}, MinAttackRange={_shooterConfig.MinAttackRange}, OptimalRange={_shooterConfig.OptimalRange}");
             
             // Проверка: цель в диапазоне атаки
@@ -94,6 +85,12 @@ namespace EnemyModule.Behaviors
                 () => _checkTooClose.IsClose || _checkTooFar.IsClose);
                 
             Debug.Log($"[ShooterBehavior] Настройка состояний завершена");
+        }
+
+        private void Die()
+        {
+            Debug.Log($"[ShooterBehavior] {gameObject.name} умер");
+            Destroy(gameObject);
         }
 
         private void OnDrawGizmos()

@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace EnemyModule.Configs
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/EnemyConfig/MeshikConfig", fileName = "MeshikConfig")]
     public class MeshikConfig : Abstract.EnemyConfig
     {
-        [Header("Параметры Мешика")]
-        [SerializeField] private float _attackRange = 0.5f;
-        [SerializeField] private float _detectionRange = 5f;
+        [SerializeField] private float attackDistance = 0.5f;
+        [SerializeField] private float _detectionDistance = 5f;
 
-        public float AttackRange => _attackRange;
-        public float DetectionRange => _detectionRange;
+        public float AttackDistance => attackDistance;
+        public float DetectionDistance => _detectionDistance;
     }
 }

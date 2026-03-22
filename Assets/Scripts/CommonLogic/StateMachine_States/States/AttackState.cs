@@ -13,7 +13,6 @@ namespace CommonLogic.StateMachine_States.States
         private readonly float _attackCooldown;
         private readonly CheckTwoObjectsClose _checkClose;
 
-        private float _distanceToTarget;
         private float _timeSinceFromLastAttack;
 
         public AttackState(IDamageProvider damageProvider, ISpendHealth spendHealth, 

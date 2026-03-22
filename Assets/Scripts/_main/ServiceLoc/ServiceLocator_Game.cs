@@ -1,6 +1,8 @@
-﻿using CommonLogic.HealthModule;
+﻿using System;
+using CommonLogic.HealthModule;
 using InventoryModule;
 using Player;
+using UI;
 using UnityEngine;
 
 
@@ -10,6 +12,9 @@ namespace _main.ServiceLoc
     public class ServiceLocator_Game : MonoBehaviour
     {
         [SerializeField] private PlayerConfig _playerConfig;
+        [SerializeField] private Player.Player _player;
+
+        private IHealth _playerHealth;
         
         public void Awake()
         {
@@ -24,12 +29,21 @@ namespace _main.ServiceLoc
             InventoryModel weaponInventory = new InventoryModel(_playerConfig.WeaponInventoryCapacity);
             InventoryModel abilitiesInventory = new InventoryModel(_playerConfig.AbilitiesInventoryCapacity);
             HealthModel playerHealth = new HealthModel(100);
-
+            _playerHealth = playerHealth;
+            
+            ServiceLocator.Current.Register(_player);
             ServiceLocator.Current.Register(new InputController());
             ServiceLocator.Current.Register<ISpendHealth>(playerHealth);
             ServiceLocator.Current.Register<IHealth>(playerHealth);
             ServiceLocator.Current.Register(weaponInventory);
             //ServiceLocator.Current.Register(abilitiesInventory);
+            
+            _player.HealthBar.Initialize(playerHealth);
+        }
+
+        private void Update()
+        {
+            Debug.Log(_playerHealth.Health);
         }
     }
 }

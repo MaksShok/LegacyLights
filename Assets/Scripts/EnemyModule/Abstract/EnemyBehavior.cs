@@ -2,6 +2,7 @@
 using CommonLogic.HealthModule;
 using CommonLogic.HealthModule.CollisionHealthProvider;
 using CommonLogic.StateMachine_States;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,7 +12,8 @@ namespace EnemyModule.Abstract
     {
         [SerializeField] protected CollisionHealthProvider _collisionHealthProvider;
         [SerializeField] protected Rigidbody2D _rb;
-        [SerializeField] private EnemyConfig _config;
+        [SerializeField] private EnemyConfig _enemyConfig;
+        [SerializeField] private HealthBar _healthBar;
 
         public ISpendHealth SpendHealth => _healthModel;
 
@@ -26,18 +28,15 @@ namespace EnemyModule.Abstract
             _targetTransform = target;
             _playerHealth = targetHealth;
             _stateMachine = new StateMachine();
-            _healthModel = new HealthModel(_config.Health);
+            _healthModel = new HealthModel(_enemyConfig.Health);
             
             _collisionHealthProvider.Initialize(_healthModel);
+            _healthBar.Initialize(_healthModel);
             
-            OnInitialize(_config);
-            
-            SetupStates();
+            OnInitialize(_enemyConfig);
         }
 
         protected abstract void OnInitialize(EnemyConfig baseConfig);
-
-        protected abstract void SetupStates();
 
         protected virtual void Update()
         {

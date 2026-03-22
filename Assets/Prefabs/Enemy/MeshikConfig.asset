@@ -16,5 +16,5 @@ MonoBehaviour:
   _damage: 10
   _moveSpeed: 3
   _attackCooldownSec: 1
-  _attackRange: 0.5
-  _detectionRange: 5
+  attackDistance: 2.5
+  _detectionDistance: 5

@@ -19,10 +19,7 @@ namespace EnemyModule.Behaviors
         protected override void OnInitialize(EnemyConfig baseConfig)
         {
             _tankConfig = (TankConfig)baseConfig;
-        }
-
-        protected override void SetupStates()
-        {
+            
             // Создаём проверку близости для области атаки
             _checkClose = new CheckTwoObjectsClose(transform, _targetTransform, _tankConfig.AttackRange);
 
