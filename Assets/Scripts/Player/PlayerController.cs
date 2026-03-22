@@ -41,18 +41,16 @@ public class PlayerController : MonoBehaviour
 
     private void RotateTowardsMouse()
     {
-        if (_rb == null) return;
-
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mouseWorldPos - (Vector2)_rb.position;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = mouseWorldPos - transform.position;
 
         if (direction.x < 0)
         {
-            _rb.rotation = 180f;
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
         else
         {
-            _rb.rotation = 0f;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
     }
 }
