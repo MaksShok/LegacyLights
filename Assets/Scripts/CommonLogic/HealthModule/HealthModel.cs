@@ -1,6 +1,4 @@
 using System;
-using _main.ServiceLoc;
-using UnityEngine;
 
 namespace CommonLogic.HealthModule
 {

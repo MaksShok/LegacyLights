@@ -2,6 +2,7 @@ using System;
 using _main.ServiceLoc;
 using Player;
 using UnityEngine;
+using WeaponModule;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Rigidbody2D _rb;
+
+    [SerializeField] 
+    private SimpleWeapon _weapon;
 
     private InputController _inputController;
 
@@ -21,6 +25,14 @@ public class PlayerController : MonoBehaviour
         if (_rb != null)
         {
             _rb.gravityScale = 0f;
+        }
+    }
+
+    private void Update()
+    {
+        if (_inputController.CheckAttackInput())
+        {
+            _weapon.Attack();
         }
     }
 
