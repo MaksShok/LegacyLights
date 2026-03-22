@@ -3,23 +3,23 @@ using UnityEngine;
 
 namespace Misc.Collisions
 {
-    public class CollisionColliderEvent : MonoBehaviour
+    public class ColliderCollisionEvent : MonoBehaviour
     {
-        public event Action<Collision> CollisionEnter;
-        public event Action<Collision> CollisionExit;
-        public event Action<Collision> CollisionStay;
+        public event Action<Collision2D> CollisionEnter;
+        public event Action<Collision2D> CollisionExit;
+        public event Action<Collision2D> CollisionStay;
 
-        private void OnCollisionEnter(Collision other)
+        private void OnCollisionEnter2D(Collision2D other)
         {
             CollisionEnter?.Invoke(other);
         }
 
-        private void OnCollisionStay(Collision other)
+        private void OnCollisionStay2D(Collision2D other)
         {
             CollisionExit?.Invoke(other);
         }
 
-        private void OnCollisionExit(Collision other)
+        private void OnCollisionExit2D(Collision2D other)
         {
             CollisionStay?.Invoke(other);
         }
