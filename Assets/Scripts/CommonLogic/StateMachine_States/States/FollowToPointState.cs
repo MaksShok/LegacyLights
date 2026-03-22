@@ -28,30 +28,18 @@ namespace CommonLogic.StateMachine_States.States
 
         public void FixedUpdate(float fixedDeltaTime)
         {
-            if (_checkClose.IsClose)
-                return;
-            
             Vector2 currentPosition = _rb.position;
             Vector2 toTarget = (Vector2)_targetPoint.position - currentPosition;
             float distanceToTarget = toTarget.magnitude;
 
-            if (distanceToTarget <= 0f)
+            if (distanceToTarget <= 0.01f)
+            {
+                _rb.linearVelocity = Vector2.zero;
                 return;
-
-            float maxStep = _moveSpeed * fixedDeltaTime;
-            Vector2 step;
-
-            if (maxStep >= distanceToTarget)
-            {
-                step = toTarget;
-            }
-            else
-            {
-                step = toTarget.normalized * maxStep;
             }
 
-            Vector2 newPosition = currentPosition + step;
-            _rb.MovePosition(newPosition);
+            Vector2 desiredVelocity = toTarget.normalized * _moveSpeed;
+            _rb.linearVelocity = desiredVelocity;
         }
 
         public void Update(float deltaTime) { }
