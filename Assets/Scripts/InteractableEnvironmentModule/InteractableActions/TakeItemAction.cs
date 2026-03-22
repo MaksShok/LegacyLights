@@ -1,11 +1,17 @@
 ﻿using InventoryModule;
+using Misc.Collisions;
 using UnityEngine;
 
 namespace InteractableEnvironmentModule.InteractableActions
 {
     public class TakeItemAction : BaseInteractableAction
     {
+        [SerializeField] 
+        private TriggerCollisionEvent _triggerEvent;
+        
+        
         private InventoryModel _inventoryModel;
+        
 
         public InventoryItem Item { get; private set; }
 

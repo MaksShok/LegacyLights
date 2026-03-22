@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using _main.ServiceLoc;
 
 namespace InventoryModule
 {
-    public class InventoryModel
+    public class InventoryModel : IService
     {
         public readonly int Capacity;
         

@@ -3,6 +3,6 @@
     public static class Scenes
     {
         public const int Menu = 1;
-        public const int FirstLevel = 2;
+        public const int Game = 2;
     }
 }

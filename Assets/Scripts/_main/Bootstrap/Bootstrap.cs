@@ -9,7 +9,6 @@ namespace _main.Bootstrap
     {
         private void Awake()
         {
-            var coroutineRunner = Instantiate(new GameObject("CoroutineRunner"));
             var sceneLoader = new SceneLoader(this);
 
             ServiceLocator.Initialize();
@@ -17,7 +16,7 @@ namespace _main.Bootstrap
             
             // Если у нас уже есть прогресс, то загружаем GameScene
             // Если прогресса нет, то загружаем меню
-            int sceneIndex = Scenes.FirstLevel;
+            int sceneIndex = Scenes.Game;
             sceneLoader.LoadScene(sceneIndex);
         }
     }

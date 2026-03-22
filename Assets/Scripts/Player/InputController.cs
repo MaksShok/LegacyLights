@@ -1,11 +1,11 @@
+using _main.ServiceLoc;
 using UnityEngine;
-using System;
 
-public class InputController : MonoBehaviour
+namespace Player
+{
+    public class InputController : IService
     {
-        public event Action<Vector2> OnMoveInput;
-
-        private void CheckMoveInput()
+        public Vector2 MoveInput()
         {
             float horizontal = 0f;
             float vertical = 0f;
@@ -20,11 +20,17 @@ public class InputController : MonoBehaviour
                 horizontal = 1f;
 
             Vector2 moveInput = new Vector2(horizontal, vertical);
-            OnMoveInput?.Invoke(moveInput);
+            return moveInput;
         }
 
-        private void Update()
+        public bool CheckAttackInput()
         {
-            CheckMoveInput();
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
+}
