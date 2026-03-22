@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InteractableEnvironmentModule.InteractableActions
 {
-    public class TakeInventoryItemAction : BaseInteractableAction
+    public class TakeItemAction : BaseInteractableAction
     {
         private InventoryModel _inventoryModel;
 

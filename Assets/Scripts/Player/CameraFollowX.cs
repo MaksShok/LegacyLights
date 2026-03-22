@@ -28,7 +28,7 @@ public class CameraFollowX : MonoBehaviour
         }
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         if (target == null)
             return;
