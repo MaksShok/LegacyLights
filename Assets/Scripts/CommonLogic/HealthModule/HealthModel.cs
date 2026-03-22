@@ -1,4 +1,5 @@
 using System;
+using _main.ServiceLoc;
 
 namespace CommonLogic.HealthModule
 {

@@ -1,8 +1,9 @@
 ﻿using System;
+using _main.ServiceLoc;
 
 namespace CommonLogic.HealthModule
 {
-    public interface IHealth
+    public interface IHealth : IService
     {
         event Action OnDie;
         int Health { get; }
