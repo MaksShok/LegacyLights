@@ -30,7 +30,7 @@ namespace EnemyModule.Behaviors
             var followState = new FollowToPointState(_rb, _targetTransform, _tankConfig.MoveSpeed, _checkClose);
             var areaAttackState = new AreaAttackState(
                 _tankConfig.Damage,
-                _targetHealth,
+                _playerHealth,
                 _tankConfig.AttackCooldownSec,
                 _tankConfig.AreaDamageRadius,
                 _checkClose,

@@ -75,7 +75,7 @@ namespace EnemyModule.Behaviors
             var rangedAttackState = new RangedAttackState(
                 transform,
                 _damageProvider,
-                _targetHealth,
+                _playerHealth,
                 _shooterConfig.AttackCooldownSec,
                 _checkInRange,
                 _shooterConfig.ProjectilePrefab,

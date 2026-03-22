@@ -19,93 +19,20 @@ namespace EnemyModule.Abstract
         protected StateMachine _stateMachine;
 
         protected Transform _targetTransform;
-        protected ISpendHealth _targetHealth;
-
-        private EnemyModule.EnemyHealthReceiver _healthReceiver;
-
-        protected virtual void Awake()
-        {
-            // Автоматически получаем компоненты если не назначены
-            if (_rb == null)
-                _rb = GetComponent<Rigidbody2D>();
-            
-            if (_collisionHealthProvider == null)
-                _collisionHealthProvider = GetComponent<CollisionHealthProvider>();
-
-            // Добавляем SpriteRenderer если нет
-            var spriteRenderer = GetComponent<SpriteRenderer>();
-            if (spriteRenderer == null)
-            {
-                spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-                
-                // Создаём простой спрайт (круг) программно
-                Sprite sprite = CreateCircleSprite();
-                spriteRenderer.sprite = sprite;
-                spriteRenderer.color = new Color(1, 0, 0, 1); // Красный цвет
-                Debug.Log($"[EnemyBehavior] Добавлен SpriteRenderer на {gameObject.name}");
-            }
-        }
-
-        private Sprite CreateCircleSprite()
-        {
-            // Создаём текстуру 32x32 с белым кругом
-            Texture2D texture = new Texture2D(32, 32);
-            Color[] pixels = new Color[32 * 32];
-            
-            for (int y = 0; y < 32; y++)
-            {
-                for (int x = 0; x < 32; x++)
-                {
-                    float dist = Vector2.Distance(new Vector2(x, y), new Vector2(16, 16));
-                    pixels[y * 32 + x] = dist <= 14 ? Color.white : Color.clear;
-                }
-            }
-            
-            texture.SetPixels(pixels);
-            texture.Apply();
-            
-            return Sprite.Create(texture, new Rect(0, 0, 32, 32), new Vector2(0.5f, 0.5f), 32);
-        }
-
+        protected ISpendHealth _playerHealth;
+        
         public void Initialize(Transform target, ISpendHealth targetHealth)
         {
-            if (target == null)
-            {
-                Debug.LogError($"[EnemyBehavior] targetTransform равен null на {gameObject.name}!");
-                enabled = false;
-                return;
-            }
-
             _targetTransform = target;
-            _targetHealth = targetHealth;
-
-            if (_config == null)
-            {
-                Debug.LogError($"[EnemyBehavior] Config не назначен на {gameObject.name}!");
-                enabled = false;
-                return;
-            }
-
+            _playerHealth = targetHealth;
+            _stateMachine = new StateMachine();
             _healthModel = new HealthModel(_config.Health);
             
-            if (_collisionHealthProvider != null)
-            {
-                _collisionHealthProvider.Initialize(_healthModel);
-            }
-
-            _healthReceiver = GetComponent<EnemyModule.EnemyHealthReceiver>();
-            if (_healthReceiver == null)
-            {
-                _healthReceiver = gameObject.AddComponent<EnemyModule.EnemyHealthReceiver>();
-            }
-            _healthReceiver.Initialize(_healthModel);
-
-            _stateMachine = new StateMachine();
-
-            OnInitialize(_config);
-            SetupStates();
+            _collisionHealthProvider.Initialize(_healthModel);
             
-            Debug.Log($"[EnemyBehavior] {gameObject.name} успешно инициализирован");
+            OnInitialize(_config);
+            
+            SetupStates();
         }
 
         protected abstract void OnInitialize(EnemyConfig baseConfig);
