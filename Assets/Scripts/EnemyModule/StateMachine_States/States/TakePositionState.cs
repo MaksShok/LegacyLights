@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CommonLogic.StateMachine_States.States
+namespace EnemyModule.StateMachine_States.States
 {
     /// <summary>
     /// Состояние занятия позиции на оптимальной дистанции от цели.

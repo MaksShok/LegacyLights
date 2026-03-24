@@ -3,13 +3,18 @@ using CommonLogic.HealthModule;
 using EnemyModule.Abstract;
 using UnityEngine;
 
-namespace EnemyModule
+namespace SpawnModule
 {
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] 
         private EnemyBehavior _enemyPrefab;
 
+        [SerializeField] 
+        private int _spawnCount = 3;
+
+        private int _spawned = 0;
+        private EnemyBehavior _currentSpawned;
         private Transform _playerTransform;
         private ISpendHealth _playerSpendHealth;
 
@@ -30,9 +35,20 @@ namespace EnemyModule
                 Debug.LogError("[EnemySpawner] Префаб врага не задан!");
                 return;
             }
+            
+            if (_currentSpawned != null) _currentSpawned.Health.Die -= SpawnEnemy;
+            if (_spawned == _spawnCount) return;
+            
+            _currentSpawned = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+            _currentSpawned.Initialize(_playerTransform, _playerSpendHealth);
+            _currentSpawned.Health.Die += SpawnEnemy;
+            _spawned++;
+        }
 
-            EnemyBehavior enemy = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
-            enemy.Initialize(_playerTransform, _playerSpendHealth);
+        public void ResetSpawning()
+        {
+            _spawned = 0;
+            SpawnEnemy();
         }
     }
 }

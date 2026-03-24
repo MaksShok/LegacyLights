@@ -1,8 +1,7 @@
-using CommonLogic.DamageModule;
 using CommonLogic.HealthModule;
 using UnityEngine;
 
-namespace CommonLogic.StateMachine_States.States
+namespace EnemyModule.StateMachine_States.States
 {
     /// <summary>
     /// Простой снаряд. Летит по прямой и наносит урон при столкновении.

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using CommonLogic.DamageModule.DamageProvider;
 using CommonLogic.HealthModule.CollisionHealthProvider;
 using Misc.Collisions;

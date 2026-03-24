@@ -1,4 +1,4 @@
-﻿namespace CommonLogic.StateMachine_States.States
+﻿namespace EnemyModule.StateMachine_States.States
 {
     public interface IState
     {

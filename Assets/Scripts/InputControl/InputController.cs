@@ -1,7 +1,7 @@
 using _main.ServiceLoc;
 using UnityEngine;
 
-namespace Player
+namespace InputControl
 {
     public class InputController : IService
     {

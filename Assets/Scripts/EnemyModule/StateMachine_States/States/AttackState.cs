@@ -2,7 +2,7 @@
 using CommonLogic.DamageModule;
 using CommonLogic.HealthModule;
 
-namespace CommonLogic.StateMachine_States.States
+namespace EnemyModule.StateMachine_States.States
 {
     public class AttackState : IState
     {

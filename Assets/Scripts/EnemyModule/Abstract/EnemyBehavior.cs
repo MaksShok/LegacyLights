@@ -1,7 +1,7 @@
 ﻿using CommonLogic.DamageModule.DamageProvider;
 using CommonLogic.HealthModule;
 using CommonLogic.HealthModule.CollisionHealthProvider;
-using CommonLogic.StateMachine_States;
+using EnemyModule.StateMachine_States;
 using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -14,8 +14,8 @@ namespace EnemyModule.Abstract
         [SerializeField] protected Rigidbody2D _rb;
         [SerializeField] private EnemyConfig _enemyConfig;
         [SerializeField] private HealthBar _healthBar;
-
-        public ISpendHealth SpendHealth => _healthModel;
+        
+        public IHealth Health => _healthModel;
 
         protected HealthModel _healthModel;
         protected StateMachine _stateMachine;

@@ -1,4 +1,5 @@
 ﻿using CommonLogic.HealthModule;
+using InputControl;
 using InventoryModule;
 using Player;
 using UnityEngine;

@@ -1,8 +1,8 @@
 ﻿using CommonLogic.Conditions;
 using CommonLogic.DamageModule.DamageProvider;
-using CommonLogic.StateMachine_States.States;
 using EnemyModule.Abstract;
 using EnemyModule.Configs;
+using EnemyModule.StateMachine_States.States;
 using UnityEngine;
 
 namespace EnemyModule.Behaviors
@@ -30,7 +30,7 @@ namespace EnemyModule.Behaviors
             // Подписка на смерть
             if (_healthModel != null)
             {
-                _healthModel.OnDie += Die;
+                _healthModel.Die += Die;
             }
             
             Debug.Log($"[ShooterBehavior] {gameObject.name} настройка состояний. AttackRange={_shooterConfig.AttackRange}, MinAttackRange={_shooterConfig.MinAttackRange}, OptimalRange={_shooterConfig.OptimalRange}");

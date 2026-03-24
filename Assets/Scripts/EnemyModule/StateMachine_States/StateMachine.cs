@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using CommonLogic.StateMachine_States.States;
+using EnemyModule.StateMachine_States.States;
 using UnityEngine;
 
-namespace CommonLogic.StateMachine_States
+namespace EnemyModule.StateMachine_States
 {
     public class StateMachine
     {
