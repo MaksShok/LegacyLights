@@ -1,13 +1,11 @@
 using System;
-using _main.ServiceLoc;
-using UnityEngine;
 
 namespace CommonLogic.HealthModule
 {
     public class HealthModel : ISpendHealth
     {
         public event Action<float> Change;
-        public event Action OnDie;
+        public event Action Die;
         public bool Alive => Health > 0;
         public int Health { get; private set; }
 
@@ -34,12 +32,12 @@ namespace CommonLogic.HealthModule
         {
             Health = Math.Max(0, value);
             if (_maxHealth != 0) Change?.Invoke((float)Health / _maxHealth);
-            if (Health == 0) OnDie?.Invoke();
+            if (Health == 0) Die?.Invoke();
         }
 
         public void ClearAllSubscribers()
         {
-            OnDie = null;
+            Die = null;
             Change = null;
         }
     }

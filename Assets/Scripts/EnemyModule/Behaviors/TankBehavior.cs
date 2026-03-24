@@ -1,8 +1,8 @@
 ﻿using CommonLogic.Conditions;
 using CommonLogic.HealthModule;
-using CommonLogic.StateMachine_States.States;
 using EnemyModule.Abstract;
 using EnemyModule.Configs;
+using EnemyModule.StateMachine_States.States;
 using UnityEngine;
 using UnityEngine.Serialization;
 

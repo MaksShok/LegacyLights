@@ -1,10 +1,9 @@
 ﻿using CommonLogic.Conditions;
 using CommonLogic.DamageModule.DamageProvider;
 using CommonLogic.HealthModule;
-using CommonLogic.StateMachine_States;
-using CommonLogic.StateMachine_States.States;
 using EnemyModule.Abstract;
 using EnemyModule.Configs;
+using EnemyModule.StateMachine_States.States;
 using UnityEngine;
 
 namespace EnemyModule.Behaviors
@@ -20,7 +19,7 @@ namespace EnemyModule.Behaviors
             _config = (MeshikConfig)baseConfig;
             _damageProvider = new SimpleDamageProvider(_config.Damage);
             
-            _healthModel.OnDie += Die;
+            _healthModel.Die += Die;
             
             float closeDistance = _config.AttackDistance + 0.2f;
             _checkClose = new CheckTwoObjectsClose(transform, _targetTransform, closeDistance);

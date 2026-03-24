@@ -1,8 +1,7 @@
-﻿using System;
-using CommonLogic.HealthModule;
+﻿using CommonLogic.HealthModule;
+using InputControl;
 using InventoryModule;
 using Player;
-using UI;
 using UnityEngine;
 
 
@@ -13,8 +12,6 @@ namespace _main.ServiceLoc
     {
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private Player.Player _player;
-
-        private IHealth _playerHealth;
         
         public void Awake()
         {
@@ -29,7 +26,6 @@ namespace _main.ServiceLoc
             InventoryModel weaponInventory = new InventoryModel(_playerConfig.WeaponInventoryCapacity);
             InventoryModel abilitiesInventory = new InventoryModel(_playerConfig.AbilitiesInventoryCapacity);
             HealthModel playerHealth = new HealthModel(100);
-            _playerHealth = playerHealth;
             
             ServiceLocator.Current.Register(_player);
             ServiceLocator.Current.Register(new InputController());
@@ -39,11 +35,6 @@ namespace _main.ServiceLoc
             //ServiceLocator.Current.Register(abilitiesInventory);
             
             _player.HealthBar.Initialize(playerHealth);
-        }
-
-        private void Update()
-        {
-            Debug.Log(_playerHealth.Health);
         }
     }
 }

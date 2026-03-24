@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 7971117886166237623}
   - component: {fileID: 4549010763259760119}
   - component: {fileID: 3698821975532109411}
+  - component: {fileID: 6331681602038034117}
   m_Layer: 3
   m_Name: TriggerCollider
   m_TagString: Untagged
@@ -164,6 +165,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e2036523e04bc4b186cebd6b1d2fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Misc.Collisions.TriggerCollisionEvent
+--- !u!114 &6331681602038034117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233522033457969161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3ffb2429bd1439b80e031c3c2ea99ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CommonLogic.HealthModule.CollisionHealthProvider.CollisionHealthProvider
+  _triggerCollisionEvent: {fileID: 3698821975532109411}
 --- !u!1 &4824254713003489043
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +457,6 @@ GameObject:
   - component: {fileID: 1451521225842132423}
   - component: {fileID: 3185301447652264678}
   - component: {fileID: 5827738938329174742}
-  - component: {fileID: 2696505185979602514}
   m_Layer: 3
   m_Name: Meshik
   m_TagString: Untagged
@@ -567,20 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf66f6c5c2064c338c1099ad44f4c95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyModule.Behaviors.MeshikBehavior
-  _collisionHealthProvider: {fileID: 2696505185979602514}
+  _collisionHealthProvider: {fileID: 6331681602038034117}
   _rb: {fileID: 3185301447652264678}
   _enemyConfig: {fileID: 11400000, guid: 958fb8df1f0cc55428f3c794820b824e, type: 2}
   _healthBar: {fileID: 1067670930938237511}
---- !u!114 &2696505185979602514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9139292225193158898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3ffb2429bd1439b80e031c3c2ea99ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CommonLogic.HealthModule.CollisionHealthProvider.CollisionHealthProvider
-  _triggerCollisionEvent: {fileID: 3698821975532109411}

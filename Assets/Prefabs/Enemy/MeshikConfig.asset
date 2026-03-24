@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MeshikConfig
   m_EditorClassIdentifier: Assembly-CSharp::EnemyModule.Configs.MeshikConfig
   _health: 100
-  _damage: 10
-  _moveSpeed: 3
+  _damage: 5
+  _moveSpeed: 1
   _attackCooldownSec: 1
-  attackDistance: 2.5
+  attackDistance: 1.5
   _detectionDistance: 5

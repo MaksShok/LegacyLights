@@ -1,7 +1,7 @@
-using System;
 using _main.ServiceLoc;
-using Player;
+using InputControl;
 using UnityEngine;
+using WeaponModule;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Rigidbody2D _rb;
+
+    [SerializeField] 
+    private SimpleWeapon _weapon;
 
     private InputController _inputController;
 
@@ -24,11 +27,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (_inputController.CheckAttackInput())
+        {
+            _weapon.Attack();
+        }
+    }
+
     private void FixedUpdate()
     {
         Vector2 moveInput = _inputController.MoveInput();
         Move(moveInput);
-        RotateTowardsMouse();
     }
 
     private void Move(Vector2 inputVector)
@@ -37,20 +47,5 @@ public class PlayerController : MonoBehaviour
 
         Vector2 velocity = inputVector.normalized * Speed;
         _rb.linearVelocity = velocity;
-    }
-
-    private void RotateTowardsMouse()
-    {
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mouseWorldPos - transform.position;
-
-        if (direction.x < 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
     }
 }
