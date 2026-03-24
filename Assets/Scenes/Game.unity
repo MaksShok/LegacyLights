@@ -534,6 +534,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollowX
   target: {fileID: 579442563}
   smoothSpeed: 5
+  useBounds: 1
+  minX: -15
+  maxX: Infinity
+  backgroundSprite: {fileID: 661478673}
+  cameraHalfWidth: 8.888889
 --- !u!4 &579442563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2321914727805122384, guid: 2f2606869807c354ead8f230f10f7310, type: 3}
@@ -702,7 +707,7 @@ Transform:
   m_GameObject: {fileID: 661478672}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.15, y: 0, z: 0}
+  m_LocalPosition: {x: 13.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
